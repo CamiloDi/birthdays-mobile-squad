@@ -23,7 +23,7 @@ exports.getNextBirthday = async (req, res, next) => {
         }).sort(dateSort);
         const employeeNextBirthday = employees.filter(em => nowDate.isSameOrBefore(em.birthday, 'month,day'))[0];
         const nextBirthday = {
-            nextBirthday: employeeNextBirthday.Birthday,
+            nextBirthday: employeeNextBirthday.birthday,
             nameNextBirthday: employeeNextBirthday.name,
             namePreviusBirthday: employees[employeeNextBirthday.index - 1].name
         }
