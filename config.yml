@@ -1,0 +1,10 @@
+code:
+  codeSuccess: "0000"
+  codeErrorServer: "0500"
+  codeErrorBadRequest: "0400"
+  codeErrorNotFound: "0404"
+message:
+  messageSuccess: Success
+  messageErrorServer: Internal Code Error
+  messageErrorBadRequest: Bad Request Code Error
+  messageErrorNotFound: Not Found Code Error
