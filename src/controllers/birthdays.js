@@ -17,6 +17,8 @@ exports.getNextBirthday = async (req, res, next) => {
         const employees = employeesList.map((em, index) => {
             let employee = new Employee(em);
             employee.birthday = moment(convertLocalDate(em.birthday)).year(nowDate.year());
+            console.log('em.birthday',em.birthday)
+            console.log('employee.birthday',employee.birthday)
             employee.index = index;
             return employee;
         }).sort(dateSort);
