@@ -1,4 +1,4 @@
-const { convertStgoTime,getObjectID } = require("../utils/utilities")
+const { convertLocalDate, getObjectID } = require("../utils/utilities")
 
 
 class Employee {
@@ -7,7 +7,7 @@ class Employee {
     ) {
         this.id = getObjectID(id);
         this.name = name;
-        this.birthday = convertStgoTime(birthday,'MM-DD');
+        this.birthday = convertLocalDate(birthday, 'MM-DD');
         this.active = active;
     }
 }

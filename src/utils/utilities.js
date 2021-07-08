@@ -3,17 +3,17 @@ const momentTZ = require('moment-timezone');
 // Config
 const { constants } = require("./config");
 
-exports.convertStgoTime = (time, format) => {
+exports.convertLocalDate = (time, format) => {
 
     if (time) {
-        if (format) return momentTZ(time).tz('America/Santiago').format(format);
+        if (format) return momentTZ(time).tz(constants.TIMEZONE).format(format);
 
-        return momentTZ(time).tz('America/Santiago').format();
+        return momentTZ(time).tz(constants.TIMEZONE).format();
     }
     if (format) {
-        return momentTZ().tz('America/Santiago').format(format);
+        return momentTZ().tz(constants.TIMEZONE).format(format);
     }
-    return momentTZ().tz('America/Santiago').format();
+    return momentTZ().tz(constants.TIMEZONE).format();
 }
 
 exports.createResponse = (internalCode, message, payload) => ({

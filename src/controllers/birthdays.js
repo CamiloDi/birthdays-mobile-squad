@@ -6,18 +6,17 @@ const Birthday = require("../models/birthday");
 
 
 // Utils
-const { createResponse, convertStgoTime } = require("../utils/utilities")
-const { ErrorHandler } = require("../utils/errorHandler");
+const { createResponse, convertLocalDate } = require("../utils/utilities")
 const { employeesConnection } = require("../utils/mongo");
 
 
 exports.getNextBirthday = async (req, res, next) => {
     try {
         const employeesList = await employeesConnection.getAll({ active: true });
-        const nowDate = moment(convertStgoTime());
+        const nowDate = moment(convertLocalDate());
         const employees = employeesList.map((em, index) => {
             let employee = new Employee(em);
-            employee.birthday = moment(em.birthday).year(nowDate.year());
+            employee.birthday = moment(convertLocalDate(em.birthday)).year(nowDate.year());
             employee.index = index;
             return employee;
         }).sort(dateSort);

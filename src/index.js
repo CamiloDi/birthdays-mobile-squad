@@ -10,7 +10,7 @@ global.GYML = yaml.safeLoad(fs.readFileSync("config.yml", "utf8"));
 
 // utilities
 const { handleError } = require("./utils/errorHandler");
-const { convertStgoTime } = require("./utils/utilities");
+const { convertLocalDate } = require("./utils/utilities");
 
 const app = express();
 
@@ -26,14 +26,14 @@ app.use('/', api);
 
 // ERROR HANDLER
 app.use((err, req, res, next) => {
-    err.internalCode = err.internalCode || global.GYML.code.codeErrorServer;
-    err.status = err.status || global.GYML.message.messageErrorServer;
-    handleError(err, res);
-  });
+  err.internalCode = err.internalCode || global.GYML.code.codeErrorServer;
+  err.status = err.status || global.GYML.message.messageErrorServer;
+  handleError(err, res);
+});
 app.set("port", process.env.PORT);
 
 app.listen(app.get("port"), () => {
-    console.log("--------------------------------------");
-    console.log(`| PUERTO ${app.get("port")} | Ambiente: ${process.env.NODE_ENV?process.env.NODE_ENV:'LOCAL'} |`);
-    console.log(`| Subido el ${convertStgoTime(null, "DD-MM-YYYY HH:mm:ss")}      |`);
-  });
+  console.log("--------------------------------------");
+  console.log(`| PUERTO ${app.get("port")} | Ambiente: ${process.env.NODE_ENV ? process.env.NODE_ENV : 'LOCAL'} |`);
+  console.log(`| Subido el ${convertLocalDate(null, "DD-MM-YYYY HH:mm:ss")}      |`);
+});
