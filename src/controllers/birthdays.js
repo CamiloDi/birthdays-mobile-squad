@@ -16,7 +16,7 @@ exports.getNextBirthday = async (req, res, next) => {
         const nowDate = moment(convertLocalDate());
         const employees = employeesList.map((em, index) => {
             let employee = new Employee(em);
-            employee.birthday = moment(convertLocalDate(em.birthday)).year(nowDate.year());
+            employee.birthday = moment(convertLocalDate(em.birthday)).year(nowDate.year()).zone("-03:00");;
             console.log('em.birthday',em.birthday)
             console.log('employee.birthday',employee.birthday)
             employee.index = index;
