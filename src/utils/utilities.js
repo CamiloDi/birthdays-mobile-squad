@@ -22,4 +22,4 @@ exports.createResponse = (internalCode, message, payload) => ({
     payload,
 });
 
-exports.getObjectID = (id=null) => (new require('mongodb').ObjectID(id));
+exports.getObjectID = (id = null) => (new require('mongodb').ObjectID(id));

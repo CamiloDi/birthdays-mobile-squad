@@ -8,6 +8,10 @@ const mongoConfig = {
         poolSize: 2
     }
 }
-const constants = { password: process.env.PASSWORD, TIMEZONE: process.env.TIMEZONE };
+const constants = {
+    password: process.env.PASSWORD,
+    TIMEZONE: process.env.TIMEZONE,
+    formatDate: "YYYY-MM-DD HH:mm Z"
+};
 
 module.exports = { mongoConfig, constants };
