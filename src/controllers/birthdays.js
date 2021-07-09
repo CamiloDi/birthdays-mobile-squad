@@ -19,13 +19,14 @@ exports.getNextBirthday = async (req, res, next) => {
         const nowDate = moment(convertLocalDate());
         const employees = employeesList.map((em, index) => {
             let employee = new Employee(em);
-            employee.birthday = momentTZ(`${em.birthday}${convertLocalDate(null,'THH:mmZ')}`).year(nowDate.year()).tz(constants.TIMEZONE);
+            employee.birthday =  moment(momentTZ.tz(em.birthday, "YYYY-MM-DD HH:mm Z", constants.TIMEZONE)).year(nowDate.year());
             console.log('em.birthday',em.birthday)
             console.log('employee.birthday',employee.birthday)
             employee.index = index;
             return employee;
         }).sort(dateSort);
         const employeeNextBirthday = employees.filter(em => nowDate.isSameOrBefore(em.birthday, 'month,day'))[0];
+        console.log(employeeNextBirthday)
         const nextBirthday = {
             nextBirthday: employeeNextBirthday.birthday,
             nameNextBirthday: employeeNextBirthday.name,
@@ -39,6 +40,7 @@ exports.getNextBirthday = async (req, res, next) => {
             )
         );
     } catch (e) {
+        console.log(e)
         next(e);
     }
 };
